@@ -143,7 +143,7 @@ export class LockMechanism {
           this.errorLog(`doLockUpdate pushChanges: ${e}`);
         }
         // Refresh the status from the API
-        interval(this.deviceRefreshRate * 500)
+        interval(5000)
           .pipe(skipWhile(() => this.lockUpdateInProgress))
           .pipe(take(1))
           .subscribe(async () => {

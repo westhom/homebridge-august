@@ -111,6 +111,12 @@ export class AugustPlatform implements DynamicPlatformPlugin {
       this.warnLog('Refresh Rate cannot be set to lower the 5 mins, as Lock detail (battery level, etc) are unlikely to change within that period');
     }
 
+    if (!this.config.options.pushRate) {
+      // default 0.1 seconds
+      this.config.options!.pushRate! = 0.1;
+      this.debugWarnLog('Using Default Push Rate (0.1 seconds).');
+    }
+
     if (!this.config.credentials) {
       throw 'Missing Credentials';
     } else {
