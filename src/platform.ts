@@ -105,7 +105,7 @@ export class AugustPlatform implements DynamicPlatformPlugin {
     if (!this.config.options.refreshRate) {
       // default 1800 seconds (30 minutes)
       this.config.options.refreshRate = 1800;
-      this.debugWarnLog('Using Default Refresh Rate (5 minutes).');
+      this.debugWarnLog('Using Default Refresh Rate (30 minutes).');
     } else if (this.config.options.refreshRate < 1800) {
       this.config.options.refreshRate = 1800;
       this.warnLog('Refresh Rate cannot be set to lower the 5 mins, as Lock detail (battery level, etc) are unlikely to change within that period');
