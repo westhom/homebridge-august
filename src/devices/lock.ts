@@ -6,6 +6,11 @@ import superStringify from 'super-stringify';
 import { device, devicesConfig } from '../settings';
 
 /**
+ * Delay in milliseconds before refreshing lock state after a lock/unlock command
+ */
+const LOCK_STATE_REFRESH_DELAY_MS = 5000;
+
+/**
  * Platform Accessory
  * An instance of this class is created for each accessory your platform registers
  * Each accessory may expose multiple services of different service types.
@@ -143,7 +148,7 @@ export class LockMechanism {
           this.errorLog(`doLockUpdate pushChanges: ${e}`);
         }
         // Refresh the status from the API
-        interval(5000)
+        interval(LOCK_STATE_REFRESH_DELAY_MS)
           .pipe(skipWhile(() => this.lockUpdateInProgress))
           .pipe(take(1))
           .subscribe(async () => {
